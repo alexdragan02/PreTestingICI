@@ -1,0 +1,21 @@
+# Ignore Visual Studio and Rider settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.cache
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore build outputs
+bin/
+obj/
+out/
+
+# Ignore dependency cache
+packages/
+node_modules/
+**/node_modules/
+
