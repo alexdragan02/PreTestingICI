@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250220112148_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250221084450_CasademarcaCreate")]
+    partial class CasademarcaCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,11 +25,13 @@ namespace Backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Backend.Models.Client", b =>
+            modelBuilder.Entity("Backend.Models.CasaDeMarcat", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("timestamp with time zone");
@@ -37,11 +39,20 @@ namespace Backend.Migrations
                     b.Property<string>("DestinationAMEF")
                         .HasColumnType("text");
 
-                    b.Property<long>("NUI")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<bool>("ProfileReset")
-                        .HasColumnType("boolean");
+                    b.Property<string>("NUI")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProfileReset")
+                        .HasColumnType("text");
 
                     b.Property<int>("ProfileType")
                         .HasColumnType("integer");
@@ -54,7 +65,7 @@ namespace Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("CasaDeMarcat");
                 });
 #pragma warning restore 612, 618
         }

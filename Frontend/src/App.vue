@@ -10,22 +10,50 @@ const loginForm = ref({
   password: ''
 })
 
-const handleLogin = () => {
-  // In a real application, you would validate credentials here
-  auth.login(loginForm.value.username)
-  showLoginModal.value = false
-  loginForm.value = { username: '', password: '' }
-}
+const handleLogin = async () => {
+  try {
+    const response = await fetch("http://localhost:5000/api/casademarcat/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        Email: loginForm.value.username,
+        Password: loginForm.value.password,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Email sau parolă incorectă");
+    }
+
+    const data = await response.json();
+    console.log("Răspuns API:", data); // ✅ Debugging pentru structura răspunsului
+
+    // 🔹 Verificăm structura corectă a răspunsului
+    if (!data || !data.casa || !data.casa.email) {
+      throw new Error("Răspunsul API nu conține date valide.");
+    }
+
+    auth.setUser(data.casa); // ✅ Salvează utilizatorul în `Pinia`
+    
+    alert(`Conectat cu succes ca ${data.casa.email}`); // ✅ Afișează alert cu email-ul
+
+    showLoginModal.value = false;
+    loginForm.value = { username: "", password: "" };
+  } catch (error) {
+    console.error("Eroare la login:", error);
+    alert("Email sau parolă incorectă");
+  }
+};
 
 const handleLogout = () => {
-  auth.logout()
-}
+  auth.logout();
+};
 </script>
 
 <template>
-  <div class="  bg-gray-100">
+  <div class="bg-gray-100">
     <nav class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
-      <div class="max-w-7xl  mx-auto px-4">
+      <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <span class="text-xl font-bold text-gray-800">PreTestare Case</span>
@@ -38,12 +66,14 @@ const handleLogout = () => {
               Logs
             </router-link>
             <div v-if="auth.isAuthenticated" class="flex items-center space-x-4">
-              <span class="text-sm text-gray-700">{{ auth.username }}</span>
+              <span class="text-sm text-gray-700">Logged in as: <b>{{ auth.userEmail }}</b></span>
+              <!-- ✅ Afișează email-ul utilizatorului -->
               <button @click="handleLogout" 
                       class="px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:text-red-900 hover:bg-red-50">
                 Logout
               </button>
             </div>
+
             <button v-else
                     @click="showLoginModal = true"
                     class="px-3 py-2 rounded-md text-sm font-medium text-blue-600 hover:text-blue-900 hover:bg-blue-50">
@@ -60,10 +90,10 @@ const handleLogout = () => {
         <h2 class="text-xl font-bold mb-4">Login</h2>
         <form @submit.prevent="handleLogin" class="space-y-4">
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
             <input type="text" 
-                   v-model="loginForm.username"
-                   class="block w-full px-4 py-2 rounded-md border border-gray-300" />
+                  v-model="loginForm.username"
+                  class="block w-full px-4 py-2 rounded-md border border-gray-300" />
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>

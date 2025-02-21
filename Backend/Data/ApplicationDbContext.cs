@@ -7,6 +7,8 @@ namespace Backend.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Client> Clients { get; set; } // Adaugă tabelele necesare
+        public DbSet<CasaDeMarcat> CaseDeMarcat {get;set;}
+        
+
     }
 }

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useAuthStore } from '../stores/auth'
 
+const auth = useAuthStore()
 const uploadedFiles = ref<any[]>([])
 const clientForm = ref({
   nui: '',
@@ -11,6 +13,30 @@ const clientForm = ref({
   destinationAMEF: '',
   urlAMEF: ''
 })
+
+// 🔹 Populează formularul cu datele utilizatorului logat
+const populateClientForm = (user: any) => {
+  clientForm.value.nui = user.nui || "";
+  clientForm.value.profileType = user.profileType ?? 0;
+  clientForm.value.profileReset = user.profileReset ?? "No";
+  clientForm.value.date = user.date || "";
+  clientForm.value.reconnectMinutes = user.reconnectMinutes ?? 0;
+  clientForm.value.destinationAMEF = user.destinationAMEF || "";
+  clientForm.value.urlAMEF = user.urlAMEF || "";
+};
+
+// 🔹 Populează formularul automat după login
+onMounted(() => {
+  if (auth.user) {
+    populateClientForm(auth.user);
+  }
+});
+
+watch(() => auth.user, (newUser) => {
+  if (newUser) {
+    populateClientForm(newUser);
+  }
+});
 
 const handleFileUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
@@ -50,8 +76,48 @@ Serial Number: 11052086255773359376 (0x9960e5e4a6591d10)`
   document.body.removeChild(a)
 }
 
-const generateClient = () => {
-  console.log('Generating client with form data:', clientForm.value)
+const generateClient = async () => {
+  try {
+    // Verificăm că avem un email valid înainte de a trimite request-ul
+    if (!auth.userEmail) {
+      alert("Nu ești autentificat. Te rog să te loghezi mai întâi.");
+      return;
+    }
+
+    // Construim payload-ul doar cu valorile care sunt setate (eliminăm `null`)
+    const payload: any = {
+      Email: auth.userEmail, // Backend-ul așteaptă acest câmp
+    };
+
+    if (clientForm.value.nui) payload.NUI = clientForm.value.nui;
+    if (clientForm.value.profileType !== null) payload.ProfileType = clientForm.value.profileType;
+    if (clientForm.value.profileReset !== null) payload.ProfileReset = clientForm.value.profileReset;
+    if (clientForm.value.date) payload.Date = clientForm.value.date;
+    if (clientForm.value.reconnectMinutes !== null) payload.ReconnectMinutes = clientForm.value.reconnectMinutes;
+    if (clientForm.value.destinationAMEF) payload.DestinationAMEF = clientForm.value.destinationAMEF;
+    if (clientForm.value.urlAMEF) payload.UrlAMEF = clientForm.value.urlAMEF;
+
+    console.log("Payload trimis către API:", payload); // ✅ Debugging
+
+    const response = await fetch("http://localhost:5000/api/casademarcat/update", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text(); // Citim răspunsul de eroare
+      throw new Error(`Eroare la actualizare: ${errorMessage}`);
+    }
+
+    const data = await response.json();
+    console.log("Răspuns API:", data); // ✅ Debugging pentru structura răspunsului
+
+    alert("Datele au fost actualizate cu succes.");
+  } catch (error:any) {
+    console.error("Eroare la actualizarea datelor:", error);
+    alert(`Eroare la actualizare: ${error.message}`);
+  }
 }
 </script>
 

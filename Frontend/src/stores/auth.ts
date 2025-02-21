@@ -1,24 +1,30 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia";
+import { ref, computed } from "vue";
 
-export const useAuthStore = defineStore('auth', () => {
-  const isAuthenticated = ref(false)
-  const username = ref('')
+export const useAuthStore = defineStore("auth", () => {
+  const user = ref<any>(null);
 
-  function login(user: string) {
-    isAuthenticated.value = true
-    username.value = user
+  try {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      user.value = JSON.parse(storedUser);
+    }
+  } catch (error) {
+    console.error("Error parsing user from localStorage:", error);
+  }
+
+  const isAuthenticated = computed(() => !!user.value);
+  const userEmail = computed(() => user.value?.email || "Unknown");
+
+  function setUser(newUser: any) {
+    user.value = newUser;
+    localStorage.setItem("user", JSON.stringify(newUser));
   }
 
   function logout() {
-    isAuthenticated.value = false
-    username.value = ''
+    user.value = null;
+    localStorage.removeItem("user");
   }
 
-  return {
-    isAuthenticated,
-    username,
-    login,
-    logout
-  }
-})
+  return { user, isAuthenticated, userEmail, setUser, logout };
+});
