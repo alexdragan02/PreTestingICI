@@ -1,5 +1,5 @@
 using Backend.DTOs;
-using Backend.Services;
+using Backend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -9,63 +9,56 @@ namespace Backend.Controllers
     [ApiController]
     public class CasaDeMarcatController : ControllerBase
     {
-        private readonly CasaDeMarcatService _service;
+        private readonly ICasaDeMarcatService _casaService;
 
-        public CasaDeMarcatController(CasaDeMarcatService service)
+        public CasaDeMarcatController(ICasaDeMarcatService casaService)
         {
-            _service = service;
+            _casaService = casaService;
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginDTO request)
+        /// 📌 Listează toate casele de marcat
+        [HttpGet("list")]
+        public async Task<IActionResult> GetCaseDeMarcat()
         {
-            var casa = await _service.LoginAsync(request.Email, request.Password);
-            if (casa == null) return Unauthorized("Email sau parolă incorectă.");
-
-            return Ok(new 
-            { 
-                Message = "Login reușit",
-                Casa = casa // ✅ Returnăm toate datele pentru frontend
-            });
+            var caseDeMarcat = await _casaService.GetAllCaseDeMarcatAsync();
+            return Ok(caseDeMarcat);
         }
 
+        /// 📌 Obține o casă de marcat după ID
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCasaDeMarcatById(int id)
+        {
+            var casa = await _casaService.GetCasaDeMarcatByIdAsync(id);
+            if (casa == null) return NotFound("Casa de marcat not found.");
 
+            return Ok(casa);
+        }
+
+        /// 📌 Adaugă o casă de marcat FĂRĂ autentificare
         [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody] CreateCasaDeMarcatDTO request)
+        public async Task<IActionResult> AddCasaDeMarcat([FromBody] CasaDeMarcatDTO casaDto)
         {
-            await _service.AddCasaDeMarcatAsync(request);
-            return Ok(new { Message = "Cont creat cu succes." });
+            if (string.IsNullOrEmpty(casaDto.UserId))
+                return BadRequest("User ID is required."); // ✅ Verifică dacă `userId` este transmis
+
+            var success = await _casaService.AddCasaDeMarcatAsync(casaDto);
+            return success ? Ok("Casa de marcat added.") : BadRequest("Error adding casa de marcat.");
         }
 
-
-        [HttpPut("update")]
-        public async Task<IActionResult> Update([FromBody] UpdateCasaDeMarcatDTO request)
+        /// 📌 Actualizează o casă de marcat existentă
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateCasaDeMarcat(int id, [FromBody] CasaDeMarcatDTO casaDto)
         {
-            try
-            {
-                await _service.UpdateCasaDeMarcatAsync(request);
-                return Ok(new { Message = "Atribute actualizate cu succes." });
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound("Casa de marcat nu a fost găsită.");
-            }
+            var success = await _casaService.UpdateCasaDeMarcatAsync(id, casaDto);
+            return success ? Ok("Casa de marcat updated.") : NotFound("Casa de marcat not found.");
         }
 
-
-        // ✅ Ștergere casa de marcat
+        /// 📌 Șterge o casă de marcat după ID
         [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteCasaDeMarcat(int id)
         {
-            try
-            {
-                await _service.DeleteCasaDeMarcatAsync(id);
-                return Ok(new { Message = "Casa de marcat ștearsă." });
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound("Casa de marcat nu a fost găsită.");
-            }
+            var success = await _casaService.DeleteCasaDeMarcatAsync(id);
+            return success ? Ok("Casa de marcat deleted.") : NotFound("Casa de marcat not found.");
         }
     }
 }

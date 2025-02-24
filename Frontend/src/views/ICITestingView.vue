@@ -1,42 +1,25 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
 
 const auth = useAuthStore()
 const uploadedFiles = ref<any[]>([])
 const clientForm = ref({
+  id: 0, // Adăugat ID pentru a identifica casa la actualizare
   nui: '',
   profileType: 0,
   profileReset: 'No',
   date: '',
   reconnectMinutes: 0,
   destinationAMEF: '',
-  urlAMEF: ''
+  urlAMEF: '',
+  name: '', // Adăugat pentru a păstra numele casei
+  email: '' // Adăugat pentru a păstra email-ul
 })
 
-// 🔹 Populează formularul cu datele utilizatorului logat
-const populateClientForm = (user: any) => {
-  clientForm.value.nui = user.nui || "";
-  clientForm.value.profileType = user.profileType ?? 0;
-  clientForm.value.profileReset = user.profileReset ?? "No";
-  clientForm.value.date = user.date || "";
-  clientForm.value.reconnectMinutes = user.reconnectMinutes ?? 0;
-  clientForm.value.destinationAMEF = user.destinationAMEF || "";
-  clientForm.value.urlAMEF = user.urlAMEF || "";
-};
-
-// 🔹 Populează formularul automat după login
-onMounted(() => {
-  if (auth.user) {
-    populateClientForm(auth.user);
-  }
-});
-
-watch(() => auth.user, (newUser) => {
-  if (newUser) {
-    populateClientForm(newUser);
-  }
-});
+const casas = ref<any[]>([])
+const newCasaName = ref('')
+const isEditMode = ref(false) // Pentru a ști dacă edităm o casă existentă
 
 const handleFileUpload = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
@@ -77,52 +60,164 @@ Serial Number: 11052086255773359376 (0x9960e5e4a6591d10)`
 }
 
 const generateClient = async () => {
-  try {
-    // Verificăm că avem un email valid înainte de a trimite request-ul
-    if (!auth.userEmail) {
-      alert("Nu ești autentificat. Te rog să te loghezi mai întâi.");
-      return;
+  if (isEditMode.value) {
+    try {
+      // Pregătim datele pentru actualizare
+      const casaToUpdate = {
+        id: clientForm.value.id,
+        name: clientForm.value.name,
+        email: clientForm.value.email,
+        nui: clientForm.value.nui,
+        profileType: clientForm.value.profileType,
+        profileReset: clientForm.value.profileReset,
+        date: clientForm.value.date,
+        reconnectMinutes: clientForm.value.reconnectMinutes,
+        destinationAMEF: clientForm.value.destinationAMEF,
+        urlAMEF: clientForm.value.urlAMEF,
+        userId: auth.user?.id
+      }
+
+      const response = await fetch(`http://localhost:8080/api/casademarcat/update/${clientForm.value.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(casaToUpdate),
+        credentials: 'include'
+      })
+
+      if (!response.ok) {
+        const errorMessage = await response.text()
+        throw new Error(`Failed to update casa de marcat: ${errorMessage}`)
+      }
+
+      // Reîncarcă lista de case după actualizare
+      await fetchCaseDeMarcat()
+      
+      // Resetăm formularul și starea de editare
+      resetForm()
+      alert('Casa de marcat a fost actualizată cu succes!')
+    } catch (error) {
+      console.error(error)
+      alert('A apărut o eroare la actualizarea casei de marcat.')
     }
+  } else {
+    console.log('Nu este selectată nicio casă pentru actualizare.')
+    alert('Selectați o casă de marcat pentru a-i actualiza datele.')
+  }
+}
 
-    // Construim payload-ul doar cu valorile care sunt setate (eliminăm `null`)
-    const payload: any = {
-      Email: auth.userEmail, // Backend-ul așteaptă acest câmp
-    };
+const resetForm = () => {
+  clientForm.value = {
+    id: 0,
+    nui: '',
+    profileType: 0,
+    profileReset: 'No',
+    date: '',
+    reconnectMinutes: 0,
+    destinationAMEF: '',
+    urlAMEF: '',
+    name: '',
+    email: ''
+  }
+  isEditMode.value = false
+}
 
-    if (clientForm.value.nui) payload.NUI = clientForm.value.nui;
-    if (clientForm.value.profileType !== null) payload.ProfileType = clientForm.value.profileType;
-    if (clientForm.value.profileReset !== null) payload.ProfileReset = clientForm.value.profileReset;
-    if (clientForm.value.date) payload.Date = clientForm.value.date;
-    if (clientForm.value.reconnectMinutes !== null) payload.ReconnectMinutes = clientForm.value.reconnectMinutes;
-    if (clientForm.value.destinationAMEF) payload.DestinationAMEF = clientForm.value.destinationAMEF;
-    if (clientForm.value.urlAMEF) payload.UrlAMEF = clientForm.value.urlAMEF;
+const fetchCaseDeMarcat = async () => {
+  try {
+    const response = await fetch('http://localhost:8080/api/casademarcat/list', {
+      credentials: 'include' // Include credentials to ensure session is sent
+    })
+    if (!response.ok) throw new Error('Failed to fetch case de marcat')
+    const data = await response.json()
+    casas.value = data
+  } catch (error) {
+    console.error(error)
+  }
+}
 
-    console.log("Payload trimis către API:", payload); // ✅ Debugging
+const addCasa = async () => {
+  if (!auth.user?.id) {
+    console.error('User is not logged in');
+    alert('Trebuie să fii logat pentru a adăuga o casă de marcat!');
+    return;
+  }
 
-    const response = await fetch("http://localhost:5000/api/casademarcat/update", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+  console.log("Trimitem la backend:", {
+    name: newCasaName.value,
+    userId: auth.user.id
+  });
+
+  try {
+    const response = await fetch('http://localhost:8080/api/casademarcat/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: newCasaName.value,
+        userId: auth.user.id
+      }),
+      credentials: 'include'
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text(); // Citim răspunsul de eroare
-      throw new Error(`Eroare la actualizare: ${errorMessage}`);
+      const errorMessage = await response.text();
+      throw new Error(`Failed to add casa de marcat: ${errorMessage}`);
     }
 
-    const data = await response.json();
-    console.log("Răspuns API:", data); // ✅ Debugging pentru structura răspunsului
+    await fetchCaseDeMarcat();
+    newCasaName.value = ''; // Resetează câmpul de introducere a numelui
+  } catch (error) {
+    console.error(error);
+    alert('A apărut o eroare la adăugarea casei de marcat.');
+  }
+};
 
-    alert("Datele au fost actualizate cu succes.");
-  } catch (error:any) {
-    console.error("Eroare la actualizarea datelor:", error);
-    alert(`Eroare la actualizare: ${error.message}`);
+const deleteCasa = async (id: number) => {
+  try {
+    const response = await fetch(`http://localhost:8080/api/casademarcat/delete/${id}`, {
+      method: 'DELETE',
+      credentials: 'include' // Include credentials to ensure session is sent
+    })
+    if (!response.ok) throw new Error('Failed to delete casa de marcat')
+    await fetchCaseDeMarcat()
+  } catch (error) {
+    console.error(error)
   }
 }
+
+const selectCasa = (index: number) => {
+  const selectedCasa = casas.value[index]
+  // Copiază toate proprietățile din casa selectată în formular
+  clientForm.value = { 
+    id: selectedCasa.id,
+    nui: selectedCasa.nui || '',
+    profileType: selectedCasa.profileType || 0,
+    profileReset: selectedCasa.profileReset || 'No',
+    date: selectedCasa.date || '',
+    reconnectMinutes: selectedCasa.reconnectMinutes || 0,
+    destinationAMEF: selectedCasa.destinationAMEF || '',
+    urlAMEF: selectedCasa.urlAMEF || '',
+    name: selectedCasa.name || '',
+    email: selectedCasa.email || ''
+  }
+  isEditMode.value = true
+  
+  // Opțional: scroll la formular
+  const formElement = document.getElementById('clientForm')
+  if (formElement) {
+    formElement.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
+onMounted(() => {
+  fetchCaseDeMarcat()
+})
 </script>
 
 <template>
-  <div class="mt-20 space-y-8">
+  <div class="space-y-8">
     <!-- Certificate Container -->
     <div class="bg-white shadow-md rounded-lg p-6">
       <div class="flex justify-between items-center mb-6">
@@ -195,8 +290,18 @@ const generateClient = async () => {
     </div>
 
     <!-- Client Generation Form -->
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-2xl font-bold mb-6 text-gray-800">Generate Client</h2>
+    <div id="clientForm" class="bg-white shadow-md rounded-lg p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">
+          {{ isEditMode ? 'Actualizare Profil Casa: ' + clientForm.name : 'Generate Client' }}
+        </h2>
+        <button v-if="isEditMode" @click="resetForm" 
+                class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600
+                       focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2
+                       transition duration-150 ease-in-out">
+          Anulează
+        </button>
+      </div>
       <form @submit.prevent="generateClient" class="space-y-6">
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">NUI</label>
@@ -271,9 +376,58 @@ const generateClient = async () => {
                        shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 
                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
                        transition duration-150 ease-in-out">
-          Genereaza
+          {{ isEditMode ? 'Actualizează Casa de Marcat' : 'Generează' }}
         </button>
       </form>
+    </div>
+
+    <!-- Casa de Marcat Table -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <h2 class="text-2xl font-bold mb-6 text-gray-800">Lista Case de Marcat</h2>
+      <div class="mb-4 flex space-x-4">
+        <input type="text" v-model="newCasaName" placeholder="Nume Casa"
+               class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
+                       focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                       text-gray-900 placeholder-gray-400" />
+        <button @click="addCasa"
+                class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 
+                       focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
+                       transition duration-150 ease-in-out">
+          Adauga Casa
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NUI</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile Type</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr v-for="(casa, index) in casas" :key="index" :class="{ 'bg-blue-50': clientForm.id === casa.id }">
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.name }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.email }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.nui }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.profileType }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <button @click="selectCasa(index)"
+                        class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline">
+                  Selecteaza
+                </button>
+                <button @click="deleteCasa(casa.id)"
+                        class="text-red-600 hover:text-red-900 focus:outline-none focus:underline ml-4">
+                  Sterge
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

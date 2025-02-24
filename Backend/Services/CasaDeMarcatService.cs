@@ -1,69 +1,80 @@
 using Backend.DTOs;
 using Backend.Models;
 using Backend.Repositories.Interfaces;
+using Backend.Services.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Backend.Services
 {
-    public class CasaDeMarcatService(ICasaDeMarcatRepository casaDeMarcatRepository)
+    public class CasaDeMarcatService : ICasaDeMarcatService
     {
-        private readonly ICasaDeMarcatRepository _casaDeMarcatRepository = casaDeMarcatRepository;
+        private readonly ICasaDeMarcatRepository _casaRepository;
 
-        public async Task<CasaDeMarcatDTO?> LoginAsync(string email, string password)
+        public CasaDeMarcatService(ICasaDeMarcatRepository casaRepository)
         {
-            var casa = await _casaDeMarcatRepository.GetCasaDeMarcatByEmail(email);
-            if (casa == null || casa.Password != password)
-                return null; // Email sau parolă incorectă
-
-            // ✅ Convertim modelul în DTO și returnăm toate datele
-            return new CasaDeMarcatDTO(
-                casa.NUI,
-                casa.Email,
-                casa.Password,
-                casa.ProfileType,
-                casa.ProfileReset,
-                casa.Date,
-                casa.ReconnectMinutes,
-                casa.DestinationAMEF,
-                casa.UrlAMEF
-            );
-        }
-        public async Task AddCasaDeMarcatAsync(CreateCasaDeMarcatDTO dto)
-        {
-            var casa = new CasaDeMarcat(dto.Email, dto.Password);
-            await _casaDeMarcatRepository.AddCasaDeMarcat(casa);
+            _casaRepository = casaRepository;
         }
 
-
-        public async Task UpdateCasaDeMarcatAsync(UpdateCasaDeMarcatDTO dto)
+        public async Task<IEnumerable<CasaDeMarcat>> GetAllCaseDeMarcatAsync()
         {
-            var casa = await _casaDeMarcatRepository.GetCasaDeMarcatByEmail(dto.Email);
+            return await _casaRepository.GetAllCaseDeMarcat();
+        }
 
+        public async Task<CasaDeMarcat?> GetCasaDeMarcatByIdAsync(int id)
+        {
+            return await _casaRepository.GetCasaDeMarcatyIdAsync(id);
+        }
+
+       public async Task<bool> AddCasaDeMarcatAsync(CasaDeMarcatDTO casaDto)
+        {
+            var casa = new CasaDeMarcat
+            {
+                Name = casaDto.Name,      // ✅ Setăm numele casei de marcat
+                UserId = casaDto.UserId,  // ✅ Asignăm UserId
+                TipProfil = 0,            // ✅ Implicit TipProfil = 0
+                TipReset = false          // ✅ Implicit TipReset = false
+                // Restul atributelor sunt null și vor fi setate ulterior prin update
+            };
+
+            await _casaRepository.AddCasaDeMarcatAsync(casa);
+            return true;
+        }
+
+
+
+
+        public async Task<bool> UpdateCasaDeMarcatAsync(int id, CasaDeMarcatDTO casaDto)
+        {
+            var casa = await _casaRepository.GetCasaDeMarcatyIdAsync(id);
             if (casa == null)
-                throw new KeyNotFoundException("Casa de marcat nu a fost găsită.");
+            {
+                return false;
+            }
 
-            // ✅ Modificăm doar atributele primite în request
-            if (dto.NUI != null) casa.NUI = dto.NUI;
-            if (dto.ProfileType.HasValue) casa.ProfileType = dto.ProfileType;
-            if (dto.ProfileReset != null) casa.ProfileReset = dto.ProfileReset;
-            if (dto.Date.HasValue) casa.Date = dto.Date;
-            if (dto.ReconnectMinutes.HasValue) casa.ReconnectMinutes = dto.ReconnectMinutes;
-            if (dto.DestinationAMEF != null) casa.DestinationAMEF = dto.DestinationAMEF;
-            if (dto.UrlAMEF != null) casa.UrlAMEF = dto.UrlAMEF;
+            casa.Name = casaDto.Name;
+            casa.NUI = casaDto.NUI;
+            casa.TipProfil = casaDto.TipProfil;
+            casa.TipReset = casaDto.TipReset;
+            casa.DateTime = casaDto.DateTime;
+            casa.NrMinuteReconectare = casaDto.NrMinuteReconectare;
+            casa.DestinatieAmef = casaDto.DestinatieAmef;
+            casa.URLAmef = casaDto.URLAmef;
 
-            await _casaDeMarcatRepository.UpdateCasaDeMarcat(casa);
+            await _casaRepository.UpdateCasaDeMarcatAsync(casa);
+            return true;
         }
 
-
-
-
-        // ✅ Ștergere casa de marcat
-        public async Task DeleteCasaDeMarcatAsync(int id)
+        public async Task<bool> DeleteCasaDeMarcatAsync(int id)
         {
-            var casa = await _casaDeMarcatRepository.GetCasaDeMarcatByID(id);
-            if (casa == null) throw new KeyNotFoundException("Casa de marcat nu există.");
+            var casa = await _casaRepository.GetCasaDeMarcatyIdAsync(id);
+            if (casa == null)
+            {
+                return false;
+            }
 
-            await _casaDeMarcatRepository.DeleteCasaDeMarcat(casa);
+            await _casaRepository.DeleteCasaDeMarcatASync(casa);
+            return true;
         }
     }
 }

@@ -4,43 +4,34 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-    [Table("CasaDeMarcat")]
     public class CasaDeMarcat
     {
-        [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } // ID unic pentru baza de date
+        public string Name { get; set; } = string.Empty;
 
-        [Required, EmailAddress]
-        public string Email { get; set; } = null!;
+        public string? NUI { get; set; } = string.Empty;
 
+        public int TipProfil { get; set; } = 0; // Implicit TipProfil = 0
+        public bool? TipReset { get; set; } = false; // Implicit TipReset = false
+
+        public DateTime? DateTime { get; set; } // Apare doar dacă TipProfil = 1 și TipReset = true
+        public int? NrMinuteReconectare { get; set; }
+        public string? DestinatieAmef { get; set; }
+        public string? URLAmef { get; set; }
+
+        // 🔹 Adăugăm relația cu `User`
         [Required]
-        public string Password { get; set; } = null!;
+        public string UserId { get; set; } = string.Empty; // Foreign Key
+        [ForeignKey("UserId")]
+        public User User { get; set; } = null!;
 
-        public string? NUI { get; set; } // Inițial null
-        public int? ProfileType { get; set; } // Inițial null
-        public string? ProfileReset { get; set; } 
-        public DateTime? Date { get; set; } 
-        public int? ReconnectMinutes { get; set; } 
-        public string? DestinationAMEF { get; set; } 
-        public string? UrlAMEF { get; set; } 
-
-        public CasaDeMarcat() { }
-
-        public CasaDeMarcat(string email, string password)
+        // ✅ Constructor pentru inițializare corectă
+        public CasaDeMarcat()
         {
-            Email = email;
-            Password = password;
-        }
-
-        public CasaDeMarcat(string nui, int profileType, string? profileReset, DateTime? date, int? reconnectMinutes, string? destinationAMEF, string? urlAMEF)
-        {
-            NUI = nui;
-            ProfileType = profileType;
-            ProfileReset = profileReset;
-            Date = date;
-            ReconnectMinutes = reconnectMinutes;
-            DestinationAMEF = destinationAMEF;
-            UrlAMEF = urlAMEF;
+            if (TipProfil == 0)
+            {
+                TipReset = false;
+            }
         }
     }
 }
