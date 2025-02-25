@@ -47,6 +47,8 @@ builder.Services.AddCors(options =>
 // ✅ Adăugăm dependințele Repository și Service
 builder.Services.AddScoped<ICasaDeMarcatRepository, CasaDeMarcatRepository>();
 builder.Services.AddScoped<ICasaDeMarcatService, CasaDeMarcatService>();
+builder.Services.AddScoped<IMsjRepository, MsjRepository>();
+builder.Services.AddScoped<IMsjService, MsjService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

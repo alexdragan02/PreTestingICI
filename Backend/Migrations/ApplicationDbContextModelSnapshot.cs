@@ -37,7 +37,6 @@ namespace Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("NUI")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -50,7 +49,7 @@ namespace Backend.Migrations
                     b.Property<int>("TipProfil")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("TipReset")
+                    b.Property<bool>("TipReset")
                         .HasColumnType("boolean");
 
                     b.Property<string>("URLAmef")
@@ -129,6 +128,16 @@ namespace Backend.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Backend.Models.XML.Msj", b =>
+                {
+                    b.Property<string>("IdM")
+                        .HasColumnType("text");
+
+                    b.HasKey("IdM");
+
+                    b.ToTable("Mesaje");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

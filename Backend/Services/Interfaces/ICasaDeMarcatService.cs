@@ -12,5 +12,6 @@ namespace Backend.Services.Interfaces
         Task<bool> AddCasaDeMarcatAsync(CasaDeMarcatDTO casaDto);
         Task<bool> UpdateCasaDeMarcatAsync(int id, CasaDeMarcatDTO casaDto);
         Task<bool> DeleteCasaDeMarcatAsync(int id);
+        
     }
 }

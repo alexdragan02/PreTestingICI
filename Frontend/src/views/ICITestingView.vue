@@ -58,54 +58,48 @@ Serial Number: 11052086255773359376 (0x9960e5e4a6591d10)`
   window.URL.revokeObjectURL(url)
   document.body.removeChild(a)
 }
-
 const generateClient = async () => {
   if (isEditMode.value) {
-    try {
-      // Pregătim datele pentru actualizare
-      const casaToUpdate = {
-        id: clientForm.value.id,
-        name: clientForm.value.name,
-        email: clientForm.value.email,
-        nui: clientForm.value.nui,
-        profileType: clientForm.value.profileType,
-        profileReset: clientForm.value.profileReset,
-        date: clientForm.value.date,
-        reconnectMinutes: clientForm.value.reconnectMinutes,
-        destinationAMEF: clientForm.value.destinationAMEF,
-        urlAMEF: clientForm.value.urlAMEF,
-        userId: auth.user?.id
-      }
+    console.log('Trimitem update cu:', clientForm.value);
 
+    try {
       const response = await fetch(`http://localhost:8080/api/casademarcat/update/${clientForm.value.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(casaToUpdate),
+        body: JSON.stringify({
+          id: clientForm.value.id,
+          name: clientForm.value.name,
+          email: clientForm.value.email,
+          nui: clientForm.value.nui,
+          TipProfil: clientForm.value.profileType,
+          TipReset: clientForm.value.profileReset === "Yes",
+          DateTime: clientForm.value.date ? new Date(clientForm.value.date).toISOString() : null,
+          NrMinuteReconectare: clientForm.value.reconnectMinutes,
+          DestinatieAmef: clientForm.value.destinationAMEF,
+          URLAmef: clientForm.value.urlAMEF,
+          UserId: auth.user?.id
+        }),
         credentials: 'include'
-      })
+      });
 
       if (!response.ok) {
-        const errorMessage = await response.text()
-        throw new Error(`Failed to update casa de marcat: ${errorMessage}`)
+        const errorMessage = await response.text();
+        throw new Error(`Failed to update casa de marcat: ${errorMessage}`);
       }
 
-      // Reîncarcă lista de case după actualizare
-      await fetchCaseDeMarcat()
-      
-      // Resetăm formularul și starea de editare
-      resetForm()
-      alert('Casa de marcat a fost actualizată cu succes!')
+      await fetchCaseDeMarcat();
+      resetForm();
+      alert('Casa de marcat a fost actualizată cu succes!');
     } catch (error) {
-      console.error(error)
-      alert('A apărut o eroare la actualizarea casei de marcat.')
+      console.error(error);
+      alert('A apărut o eroare la actualizarea casei de marcat.');
     }
-  } else {
-    console.log('Nu este selectată nicio casă pentru actualizare.')
-    alert('Selectați o casă de marcat pentru a-i actualiza datele.')
   }
 }
+
+
 
 const resetForm = () => {
   clientForm.value = {
@@ -189,27 +183,31 @@ const deleteCasa = async (id: number) => {
 
 const selectCasa = (index: number) => {
   const selectedCasa = casas.value[index]
-  // Copiază toate proprietățile din casa selectată în formular
+  
+  // Populăm formularul cu datele casei selectate
   clientForm.value = { 
     id: selectedCasa.id,
+    name: selectedCasa.name || '',
+    email: selectedCasa.email || '',
     nui: selectedCasa.nui || '',
     profileType: selectedCasa.profileType || 0,
     profileReset: selectedCasa.profileReset || 'No',
     date: selectedCasa.date || '',
     reconnectMinutes: selectedCasa.reconnectMinutes || 0,
     destinationAMEF: selectedCasa.destinationAMEF || '',
-    urlAMEF: selectedCasa.urlAMEF || '',
-    name: selectedCasa.name || '',
-    email: selectedCasa.email || ''
+    urlAMEF: selectedCasa.urlAMEF || ''
   }
-  isEditMode.value = true
   
-  // Opțional: scroll la formular
+  isEditMode.value = true
+
+  // Opțional: scroll la formular pentru a atrage atenția utilizatorului
   const formElement = document.getElementById('clientForm')
   if (formElement) {
     formElement.scrollIntoView({ behavior: 'smooth' })
   }
 }
+
+
 
 onMounted(() => {
   fetchCaseDeMarcat()
@@ -217,7 +215,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="space-y-8">
+  <div class="space-y-8 mt-16">
     <!-- Certificate Container -->
     <div class="bg-white shadow-md rounded-lg p-6">
       <div class="flex justify-between items-center mb-6">
@@ -303,82 +301,47 @@ onMounted(() => {
         </button>
       </div>
       <form @submit.prevent="generateClient" class="space-y-6">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">NUI</label>
-          <input type="text" v-model="clientForm.nui" 
-                 class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                        focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                        text-gray-900 placeholder-gray-400" />
-        </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Nume</label>
+    <input type="text" v-model="clientForm.name" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+    <input type="email" v-model="clientForm.email" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">NUI</label>
+    <input type="text" v-model="clientForm.nui" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Profile Type</label>
+    <select v-model="clientForm.profileType" class="block w-full px-4 py-3 rounded-md border border-gray-300">
+      <option :value="0">0</option>
+      <option :value="1">1</option>
+    </select>
+  </div>
+
+  <div v-if="clientForm.profileType === 1">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Destinatie AMEF</label>
+    <input type="text" v-model="clientForm.destinationAMEF" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">URL AMEF</label>
+    <input type="text" v-model="clientForm.urlAMEF" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
+  </div>
+
+  <button type="submit" class="w-full flex justify-center py-3 px-4 bg-blue-600 text-white rounded-md">
+    {{ isEditMode ? 'Actualizează Casa de Marcat' : 'Generează' }}
+  </button>
+</form>
 
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">Profile Type</label>
-          <select v-model="clientForm.profileType"
-                  class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                         focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                         text-gray-900">
-            <option :value="0">0</option>
-            <option :value="1">1</option>
-          </select>
-        </div>
-
-        <div v-if="clientForm.profileType === 0">
-          <label class="block text-sm font-medium text-gray-700 mb-2">Profile Reset</label>
-          <select v-model="clientForm.profileReset"
-                  class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                         focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                         text-gray-900">
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-
-          <div v-if="clientForm.profileReset === 'Yes'" class="mt-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
-            <input type="date" v-model="clientForm.date"
-                   class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                          focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                          text-gray-900" />
-          </div>
-        </div>
-
-        <div v-if="clientForm.profileType === 1" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Numar minute reconectare</label>
-            <input type="number" v-model="clientForm.reconnectMinutes"
-                   class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                          focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                          text-gray-900" />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">Destinatie AMEF</label>
-            <select v-model="clientForm.destinationAMEF"
-                    class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                           text-gray-900">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">URL AMEF uzual</label>
-            <input type="text" v-model="clientForm.urlAMEF"
-                   placeholder="xml localhost"
-                   class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                          focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                          text-gray-900" />
-          </div>
-        </div>
-
-        <button type="submit"
-                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md 
-                       shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 
-                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-                       transition duration-150 ease-in-out">
-          {{ isEditMode ? 'Actualizează Casa de Marcat' : 'Generează' }}
-        </button>
-      </form>
+        
     </div>
 
     <!-- Casa de Marcat Table -->
@@ -402,18 +365,27 @@ onMounted(() => {
           <thead class="bg-gray-50">
             <tr>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NUI</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile Type</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile Reset</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reconnect Minutes</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination AMEF</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">URL AMEF</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="(casa, index) in casas" :key="index" :class="{ 'bg-blue-50': clientForm.id === casa.id }">
               <td class="px-6 py-4 whitespace-nowrap">{{ casa.name }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.email }}</td>
               <td class="px-6 py-4 whitespace-nowrap">{{ casa.nui }}</td>
               <td class="px-6 py-4 whitespace-nowrap">{{ casa.profileType }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.profileReset }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.date }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.reconnectMinutes }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.destinationAMEF }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ casa.urlAMEF }}</td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <button @click="selectCasa(index)"
                         class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline">
@@ -427,6 +399,7 @@ onMounted(() => {
             </tr>
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   </div>

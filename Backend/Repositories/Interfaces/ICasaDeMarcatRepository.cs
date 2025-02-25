@@ -9,6 +9,6 @@ namespace Backend.Repositories.Interfaces
         Task AddCasaDeMarcatAsync(CasaDeMarcat casa);
         Task UpdateCasaDeMarcatAsync(CasaDeMarcat casa);
         Task DeleteCasaDeMarcatASync(CasaDeMarcat casa);
-
+         void MarkAsModified(CasaDeMarcat casa);
     }
 }

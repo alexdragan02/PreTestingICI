@@ -35,8 +35,14 @@ namespace Backend.Repositories
 
         public async Task UpdateCasaDeMarcatAsync(CasaDeMarcat casa)
         {
-            _context.CaseDeMarcat.Update(casa);
+            // _context.CaseDeMarcat.Update(casa);
+            
             await _context.SaveChangesAsync();
+        }
+
+        public void MarkAsModified(CasaDeMarcat casa)
+        {
+            _context.Entry(casa).State = EntityState.Modified;
         }
     }
 }

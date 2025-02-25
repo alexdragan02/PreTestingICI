@@ -30,11 +30,10 @@ namespace Backend.Services
         {
             var casa = new CasaDeMarcat
             {
-                Name = casaDto.Name,      // ✅ Setăm numele casei de marcat
-                UserId = casaDto.UserId,  // ✅ Asignăm UserId
-                TipProfil = 0,            // ✅ Implicit TipProfil = 0
-                TipReset = false          // ✅ Implicit TipReset = false
-                // Restul atributelor sunt null și vor fi setate ulterior prin update
+                Name = casaDto.Name,      
+                UserId = casaDto.UserId,  
+                TipProfil = 0,         
+                TipReset = false          
             };
 
             await _casaRepository.AddCasaDeMarcatAsync(casa);
@@ -44,7 +43,7 @@ namespace Backend.Services
 
 
 
-        public async Task<bool> UpdateCasaDeMarcatAsync(int id, CasaDeMarcatDTO casaDto)
+       public async Task<bool> UpdateCasaDeMarcatAsync(int id, CasaDeMarcatDTO casaDto)
         {
             var casa = await _casaRepository.GetCasaDeMarcatyIdAsync(id);
             if (casa == null)
@@ -52,6 +51,7 @@ namespace Backend.Services
                 return false;
             }
 
+            // Actualizăm toate proprietățile
             casa.Name = casaDto.Name;
             casa.NUI = casaDto.NUI;
             casa.TipProfil = casaDto.TipProfil;
@@ -61,9 +61,13 @@ namespace Backend.Services
             casa.DestinatieAmef = casaDto.DestinatieAmef;
             casa.URLAmef = casaDto.URLAmef;
 
+            // Marchează explicit proprietățile ca modificate
+            // _casaRepository.MarkAsModified(casa);
+
             await _casaRepository.UpdateCasaDeMarcatAsync(casa);
             return true;
         }
+
 
         public async Task<bool> DeleteCasaDeMarcatAsync(int id)
         {

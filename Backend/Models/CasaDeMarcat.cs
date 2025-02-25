@@ -11,8 +11,8 @@ namespace Backend.Models
 
         public string? NUI { get; set; } = string.Empty;
 
-        public int TipProfil { get; set; } = 0; // Implicit TipProfil = 0
-        public bool? TipReset { get; set; } = false; // Implicit TipReset = false
+        public int TipProfil { get; set; } // Implicit TipProfil = 0
+        public bool TipReset { get; set; } // Implicit TipReset = false
 
         public DateTime? DateTime { get; set; } // Apare doar dacă TipProfil = 1 și TipReset = true
         public int? NrMinuteReconectare { get; set; }
@@ -22,16 +22,56 @@ namespace Backend.Models
         // 🔹 Adăugăm relația cu `User`
         [Required]
         public string UserId { get; set; } = string.Empty; // Foreign Key
+
         [ForeignKey("UserId")]
         public User User { get; set; } = null!;
 
         // ✅ Constructor pentru inițializare corectă
-        public CasaDeMarcat()
+        public CasaDeMarcat() { }
+
+        public CasaDeMarcat(
+            int id,
+            string name,
+            string? nui,
+            int tipProfil,
+            bool tipReset,
+            DateTime? dateTime,
+            int? nrMinuteReconectare,
+            string? destinatieAmef,
+            string? urlAmef,
+            string userId,
+            User user
+        )
         {
-            if (TipProfil == 0)
-            {
-                TipReset = false;
-            }
+            this.Id = id;
+            this.Name = name;
+            this.NUI = nui;
+            this.TipProfil = tipProfil;
+            this.TipReset = tipReset;
+            this.DateTime = dateTime;
+            this.NrMinuteReconectare = nrMinuteReconectare;
+            this.DestinatieAmef = destinatieAmef;
+            this.URLAmef = urlAmef;
+            this.UserId = userId;
+            this.User = user;
         }
+
+        // Constructor de copiere
+        public CasaDeMarcat(CasaDeMarcat casa)
+        {
+            this.Id = casa.Id;
+            this.Name = casa.Name;
+            this.NUI = casa.NUI;
+            this.TipProfil = casa.TipProfil;
+            this.TipReset = casa.TipReset;
+            this.DateTime = casa.DateTime;
+            this.NrMinuteReconectare = casa.NrMinuteReconectare;
+            this.DestinatieAmef = casa.DestinatieAmef;
+            this.URLAmef = casa.URLAmef;
+            this.UserId = casa.UserId;
+            this.User = casa.User;
+        }
+
+        // Constructor de instanțiere cu toate elementele
     }
 }

@@ -1,10 +1,10 @@
-using Backend.Models;
+using System.Threading.Tasks;
 using Backend.Data;
+using Backend.DTOs;
+using Backend.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using Backend.DTOs;
 
 namespace Backend.Controllers
 {
@@ -16,7 +16,11 @@ namespace Backend.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly ApplicationDbContext _context;
 
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, ApplicationDbContext context)
+        public AuthController(
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
+            ApplicationDbContext context
+        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -36,47 +40,49 @@ namespace Backend.Controllers
         }
 
         [HttpPost("login")]
-public async Task<IActionResult> Login([FromBody] LoginModel model)
-{
-    var user = await _userManager.FindByEmailAsync(model.Email);
-    if (user == null)
-        return Unauthorized("Invalid email or password");
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return Unauthorized("Invalid email or password");
 
-    var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, false);
-    if (!result.Succeeded)
-        return Unauthorized("Invalid email or password");
+            var result = await _signInManager.PasswordSignInAsync(
+                user,
+                model.Password,
+                true,
+                false
+            );
+            if (!result.Succeeded)
+                return Unauthorized("Invalid email or password");
 
-    // Creează DTO pentru utilizator fără ciclu infinit
-   var userDto = new UserDTO
-    {
-        Id = user.Id,
-        Email = user.Email,
-        CaseDeMarcat = await _context.CaseDeMarcat
-            .Where(c => c.UserId == user.Id)
-            .Select(c => new CasaDeMarcatDTO(
-                user.Id,  // ✅ UserId este necesar
-                c.Name,
-                c.NUI,
-                c.TipProfil,
-                c.TipReset,
-                c.DateTime,
-                c.NrMinuteReconectare,
-                c.DestinatieAmef,
-                c.URLAmef
-            ))
-            .ToListAsync()
-    };
+            var userDto = new UserDTO
+            {
+                Id = user.Id,
+                Email = user.Email,
+                CaseDeMarcat = await _context
+                    .CaseDeMarcat.Where(c => c.UserId == user.Id)
+                    .Select(c => new CasaDeMarcatDTO(
+                        user.Id, 
+                        c.Name,
+                        c.TipProfil,
+                        c.TipReset,
+                        c.NUI,
+                        c.DateTime,
+                        c.NrMinuteReconectare,
+                        c.DestinatieAmef,
+                        c.URLAmef
+                    ))
+                    .ToListAsync(),
+            };
 
-
-    return Ok(new { Message = "Login successful", User = userDto });
-}
-
+            return Ok(new { Message = "Login successful", User = userDto });
+        }
 
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUserWithCaseDeMarcat(string userId)
         {
-            var user = await _context.Users
-                .Include(u => u.CaseDeMarcat)
+            var user = await _context
+                .Users.Include(u => u.CaseDeMarcat)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
