@@ -70,7 +70,8 @@ namespace Backend.Controllers
                         c.DateTime,
                         c.NrMinuteReconectare,
                         c.DestinatieAmef,
-                        c.URLAmef
+                        c.URLAmef,
+                        c.MesajXML
                     ))
                     .ToListAsync(),
             };

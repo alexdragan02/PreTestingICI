@@ -1,3 +1,5 @@
+using Backend.Models.XML;
+
 namespace Backend.DTOs
 {
     public record CasaDeMarcatDTO(
@@ -9,7 +11,8 @@ namespace Backend.DTOs
         DateTime? DateTime = null,
         int? NrMinuteReconectare = null,
         string? DestinatieAmef = null,
-        string? URLAmef = null
+        string? URLAmef = null,
+        List<Msj> MesajXML=null
     )
     {
         public DateTime? DateTimeUtc => DateTime?.ToUniversalTime();

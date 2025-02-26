@@ -17,7 +17,7 @@ namespace Backend.Models.XML.Bon
         [XmlAttribute("totTva")]
         public decimal TotTva { get; set; }
 
-        [XmlAttribute("cote")]
-        public List<Cote> Cote { get; set; }
+        [XmlElement("cote")]
+        public List<Cote> Cote { get; set; } = new List<Cote>();
     }
 }

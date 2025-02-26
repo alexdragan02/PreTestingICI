@@ -11,6 +11,7 @@ namespace Backend.Repositories.Interfaces
           Task<IEnumerable<Msj>> GetAllMesajeAsync();
         Task<Msj> GetMesajByIdAsync(string id);
         Task AddMesajAsync(Msj mesaj);
+        
         Task SaveChangesAsync();
     }
 }

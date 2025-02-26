@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Backend.Models.XML;
 
 namespace Backend.Models
 {
@@ -19,7 +20,7 @@ namespace Backend.Models
         public string? DestinatieAmef { get; set; }
         public string? URLAmef { get; set; }
 
-        // 🔹 Adăugăm relația cu `User`
+        public virtual List<Msj> MesajXML { get; set; }
         [Required]
         public string UserId { get; set; } = string.Empty; // Foreign Key
 

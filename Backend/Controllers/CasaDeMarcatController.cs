@@ -22,7 +22,7 @@ namespace Backend.Controllers
             var caseDeMarcat = await _casaService.GetAllCaseDeMarcatAsync();
             return Ok(caseDeMarcat);
         }
-
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCasaDeMarcatById(int id)
         {

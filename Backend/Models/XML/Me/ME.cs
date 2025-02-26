@@ -10,9 +10,9 @@ namespace Backend.Models.XML.Me
     public class ME
     {
         [XmlAttribute("nrB")]
-        private int NrB { get; set; }
+        public int NrB { get; set; }
 
-        [XmlAttribute("ev")]
-        private List<Ev> Ev { get; set; }
+        [XmlElement("ev")]
+        public List<Ev> Ev { get; set; } = new List<Ev>();
     }
 }

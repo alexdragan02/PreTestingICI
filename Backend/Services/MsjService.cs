@@ -29,8 +29,12 @@ namespace Backend.Services
         {
             return await _msjRepository.GetMesajByIdAsync(id);
         }
-
-        public async Task GenerateAndSaveRandomMesaje(int count)
+        public async Task<IEnumerable<Msj>> GetMesajeByCasaDeMarcatIdAsync(int casaDeMarcatId)
+        {
+            var allMesaje = await _msjRepository.GetAllMesajeAsync();
+            return allMesaje.Where(m => m.CasaDeMarcatId == casaDeMarcatId).ToList();
+        }
+        public async Task GenerateAndSaveRandomMesaje(int casaDeMarcatId, int count)
         {
             var faker = new Faker("ro");
             var mesaje = new List<Msj>();
@@ -40,10 +44,12 @@ namespace Backend.Services
                 var mesaj = new Msj
                 {
                     IdM = faker.Random.AlphaNumeric(25),
+                    CasaDeMarcatId = casaDeMarcatId, // Asociem mesajul cu CasaDeMarcat
+
                     Bon = new Bon
                     {
                         IdB = faker.Random.AlphaNumeric(25),
-                        TotB = faker.Finance.Amount(10, 500), 
+                        TotB = faker.Finance.Amount(10, 500),
                         TotTva = faker.Finance.Amount(1, 50),
                         Cote = new List<Cote>
                         {
@@ -51,6 +57,7 @@ namespace Backend.Services
                             new Cote { Cota = 5, Tva = faker.Finance.Amount(1, 10) }
                         }
                     },
+
                     RB = new RB
                     {
                         IdR = faker.Random.AlphaNumeric(25),
@@ -59,11 +66,40 @@ namespace Backend.Services
                         TotB = (float)faker.Finance.Amount(10, 500),
                         TotTva = (float)faker.Finance.Amount(1, 50),
                         MonRef = "RON",
+                        CoteZList = new List<CoteZ>
+                        {
+                            new CoteZ { Cota = 19, ValOp = faker.Random.Float(10, 50), Tva = faker.Random.Float(1, 10) },
+                            new CoteZ { Cota = 5, ValOp = faker.Random.Float(5, 25), Tva = faker.Random.Float(1, 5) }
+                        },
                         Pl = new PL
                         {
                             TipP = faker.Random.Int(1, 3),
                             ValPl = (float)faker.Finance.Amount(10, 500),
                             MonPl = "RON"
+                        },
+                        Av = new AV
+                        {
+                            Data = faker.Date.Recent().ToUniversalTime()
+                        }
+                    },
+
+                    ME = new ME
+                    {
+                        NrB = faker.Random.Int(1, 10),
+                        Ev = new List<Ev>
+                        {
+                            new Ev
+                            {
+                                DataI = faker.Date.Past().ToUniversalTime(),
+                                DataF = faker.Date.Future().ToUniversalTime(),
+                                TipE = faker.Random.Int(1, 10)
+                            },
+                            new Ev
+                            {
+                                DataI = faker.Date.Past().ToUniversalTime(),
+                                DataF = faker.Date.Future().ToUniversalTime(),
+                                TipE = faker.Random.Int(1, 10)
+                            }
                         }
                     }
                 };
@@ -71,12 +107,7 @@ namespace Backend.Services
                 mesaje.Add(mesaj);
             }
 
-            foreach (var mesaj in mesaje)
-            {
-                await _msjRepository.AddMesajAsync(mesaj);
-            }
-
-            await _msjRepository.SaveChangesAsync();
         }
+
     }
 }

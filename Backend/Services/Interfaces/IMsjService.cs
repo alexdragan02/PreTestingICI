@@ -8,6 +8,7 @@ namespace Backend.Services.Interfaces
     {
         Task<IEnumerable<Msj>> GetAllMesajeAsync();
         Task<Msj> GetMesajByIdAsync(string id);
-        Task GenerateAndSaveRandomMesaje(int count);
+        Task<IEnumerable<Msj>> GetMesajeByCasaDeMarcatIdAsync(int casaDeMarcatId);
+        Task GenerateAndSaveRandomMesaje(int casaDeMarcatId, int count);
     }
 }

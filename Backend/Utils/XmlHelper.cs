@@ -9,6 +9,9 @@ namespace Backend.Utils
     {
         public static string SerializeToXml<T>(T obj)
         {
+            if (obj == null)
+                throw new ArgumentNullException(nameof(obj));
+
             var xmlSerializer = new XmlSerializer(typeof(T));
 
             var settings = new XmlWriterSettings

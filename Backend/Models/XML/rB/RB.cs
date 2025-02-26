@@ -64,12 +64,12 @@ namespace Backend.Models.XML.rB
         public string MonRef { get; set; }
 
         [XmlElement("pl")]
-        public PL Pl { get; set; }
+        public PL Pl { get; set; } = new PL();
 
         [XmlElement("coteZ")]
-        public List<CoteZ> CoteZList { get; set; }
+        public List<CoteZ> CoteZList { get; set; } = new List<CoteZ>();
 
         [XmlElement("av")]
-        public AV Av { get; set; }
+        public AV Av { get; set; } = new AV();
     }
 }

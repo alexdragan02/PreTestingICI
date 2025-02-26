@@ -10,12 +10,12 @@ namespace Backend.Models.XML.Me
     public class Ev
     {
         [XmlAttribute("dataI")]
-        private DateTime DataI { get; set; }
+        public DateTime DataI { get; set; }
 
         [XmlAttribute("dataF")]
-        private DateTime DataF { get; set; }
+        public DateTime DataF { get; set; }
 
         [XmlAttribute("tipE")]
-        private int TipE { get; set; }
+        public int TipE { get; set; }
     }
 }

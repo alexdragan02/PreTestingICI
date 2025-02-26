@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
+import { useCasaStore } from '../stores/casaStore'
+import { useRouter } from 'vue-router'
 
+const casaStore = useCasaStore()
+const router = useRouter()
+
+const selectCasaForLogs = (id: number) => {
+  casaStore.setCasaId(id) // Stocăm ID-ul casei în store
+  router.push('/logs') // Navigăm la LogsView
+}
 const auth = useAuthStore()
 const uploadedFiles = ref<any[]>([])
 const clientForm = ref({
@@ -339,10 +348,7 @@ onMounted(() => {
   </button>
 </form>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Profile Type</label>
-        
-    </div>
+       
 
     <!-- Casa de Marcat Table -->
     <div class="bg-white shadow-md rounded-lg p-6">
@@ -387,9 +393,13 @@ onMounted(() => {
               <td class="px-6 py-4 whitespace-nowrap">{{ casa.destinationAMEF }}</td>
               <td class="px-6 py-4 whitespace-nowrap">{{ casa.urlAMEF }}</td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <button @click="selectCasa(index)"
+                <button @click="selectCasa(casa.id)"
                         class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline">
-                  Selecteaza
+                  Selectează
+                </button>
+                <button @click="selectCasaForLogs(casa.id)"
+                        class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline">
+                  Vezi Loguri
                 </button>
                 <button @click="deleteCasa(casa.id)"
                         class="text-red-600 hover:text-red-900 focus:outline-none focus:underline ml-4">

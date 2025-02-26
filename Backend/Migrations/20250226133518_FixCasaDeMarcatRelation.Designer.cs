@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250225121803_AddMesajeTable")]
-    partial class AddMesajeTable
+    [Migration("20250226133518_FixCasaDeMarcatRelation")]
+    partial class FixCasaDeMarcatRelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,7 +138,12 @@ namespace Backend.Migrations
                     b.Property<string>("IdM")
                         .HasColumnType("text");
 
+                    b.Property<int>("CasaDeMarcatId")
+                        .HasColumnType("integer");
+
                     b.HasKey("IdM");
+
+                    b.HasIndex("CasaDeMarcatId");
 
                     b.ToTable("Mesaje");
                 });
@@ -280,10 +285,273 @@ namespace Backend.Migrations
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany("CaseDeMarcat")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Backend.Models.XML.Msj", b =>
+                {
+                    b.HasOne("Backend.Models.CasaDeMarcat", "CasaDeMarcat")
+                        .WithMany("MesajXML")
+                        .HasForeignKey("CasaDeMarcatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("Backend.Models.XML.Bon.Bon", "Bon", b1 =>
+                        {
+                            b1.Property<string>("MsjIdM")
+                                .HasColumnType("text");
+
+                            b1.Property<string>("IdB")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<decimal>("TotB")
+                                .HasColumnType("numeric");
+
+                            b1.Property<decimal>("TotTva")
+                                .HasColumnType("numeric");
+
+                            b1.HasKey("MsjIdM");
+
+                            b1.ToTable("Mesaje");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MsjIdM");
+
+                            b1.OwnsMany("Backend.Models.XML.Bon.Cote", "Cote", b2 =>
+                                {
+                                    b2.Property<string>("BonMsjIdM")
+                                        .HasColumnType("text");
+
+                                    b2.Property<int>("Id")
+                                        .ValueGeneratedOnAdd()
+                                        .HasColumnType("integer");
+
+                                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b2.Property<int>("Id"));
+
+                                    b2.Property<int>("Cota")
+                                        .HasColumnType("integer");
+
+                                    b2.Property<decimal>("Tva")
+                                        .HasColumnType("numeric");
+
+                                    b2.HasKey("BonMsjIdM", "Id");
+
+                                    b2.ToTable("Cote");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("BonMsjIdM");
+                                });
+
+                            b1.Navigation("Cote");
+                        });
+
+                    b.OwnsOne("Backend.Models.XML.Me.ME", "ME", b1 =>
+                        {
+                            b1.Property<string>("MsjIdM")
+                                .HasColumnType("text");
+
+                            b1.Property<int>("NrB")
+                                .HasColumnType("integer");
+
+                            b1.HasKey("MsjIdM");
+
+                            b1.ToTable("Mesaje");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MsjIdM");
+
+                            b1.OwnsMany("Backend.Models.XML.Me.Ev", "Ev", b2 =>
+                                {
+                                    b2.Property<string>("MEMsjIdM")
+                                        .HasColumnType("text");
+
+                                    b2.Property<int>("Id")
+                                        .ValueGeneratedOnAdd()
+                                        .HasColumnType("integer");
+
+                                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b2.Property<int>("Id"));
+
+                                    b2.Property<DateTime>("DataF")
+                                        .HasColumnType("timestamp with time zone");
+
+                                    b2.Property<DateTime>("DataI")
+                                        .HasColumnType("timestamp with time zone");
+
+                                    b2.Property<int>("TipE")
+                                        .HasColumnType("integer");
+
+                                    b2.HasKey("MEMsjIdM", "Id");
+
+                                    b2.ToTable("Ev");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("MEMsjIdM");
+                                });
+
+                            b1.Navigation("Ev");
+                        });
+
+                    b.OwnsOne("Backend.Models.XML.rB.RB", "RB", b1 =>
+                        {
+                            b1.Property<string>("MsjIdM")
+                                .HasColumnType("text");
+
+                            b1.Property<string>("IdR")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<string>("MonRef")
+                                .IsRequired()
+                                .HasColumnType("text");
+
+                            b1.Property<int>("NrA")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("NrAv")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("NrB")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("NrBC")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("NrM")
+                                .HasColumnType("integer");
+
+                            b1.Property<int>("NrR")
+                                .HasColumnType("integer");
+
+                            b1.Property<float>("SumeServIn")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("SumeServOut")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotA")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotB")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotBC")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotM")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotNet")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotR")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotTaxe")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotTva")
+                                .HasColumnType("real");
+
+                            b1.Property<float>("TotTvaC")
+                                .HasColumnType("real");
+
+                            b1.HasKey("MsjIdM");
+
+                            b1.ToTable("Mesaje");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MsjIdM");
+
+                            b1.OwnsOne("Backend.Models.XML.rB.AV", "Av", b2 =>
+                                {
+                                    b2.Property<string>("RBMsjIdM")
+                                        .HasColumnType("text");
+
+                                    b2.Property<DateTime>("Data")
+                                        .HasColumnType("timestamp with time zone");
+
+                                    b2.HasKey("RBMsjIdM");
+
+                                    b2.ToTable("Mesaje");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("RBMsjIdM");
+                                });
+
+                            b1.OwnsMany("Backend.Models.XML.rB.CoteZ", "CoteZList", b2 =>
+                                {
+                                    b2.Property<string>("RBMsjIdM")
+                                        .HasColumnType("text");
+
+                                    b2.Property<int>("Id")
+                                        .ValueGeneratedOnAdd()
+                                        .HasColumnType("integer");
+
+                                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b2.Property<int>("Id"));
+
+                                    b2.Property<int>("Cota")
+                                        .HasColumnType("integer");
+
+                                    b2.Property<float>("Tva")
+                                        .HasColumnType("real");
+
+                                    b2.Property<float>("ValOp")
+                                        .HasColumnType("real");
+
+                                    b2.HasKey("RBMsjIdM", "Id");
+
+                                    b2.ToTable("CoteZ");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("RBMsjIdM");
+                                });
+
+                            b1.OwnsOne("Backend.Models.XML.rB.PL", "Pl", b2 =>
+                                {
+                                    b2.Property<string>("RBMsjIdM")
+                                        .HasColumnType("text");
+
+                                    b2.Property<string>("MonPl")
+                                        .IsRequired()
+                                        .HasColumnType("text");
+
+                                    b2.Property<int>("TipP")
+                                        .HasColumnType("integer");
+
+                                    b2.Property<double>("ValPl")
+                                        .HasColumnType("double precision");
+
+                                    b2.HasKey("RBMsjIdM");
+
+                                    b2.ToTable("Mesaje");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("RBMsjIdM");
+                                });
+
+                            b1.Navigation("Av")
+                                .IsRequired();
+
+                            b1.Navigation("CoteZList");
+
+                            b1.Navigation("Pl")
+                                .IsRequired();
+                        });
+
+                    b.Navigation("Bon")
+                        .IsRequired();
+
+                    b.Navigation("CasaDeMarcat");
+
+                    b.Navigation("ME")
+                        .IsRequired();
+
+                    b.Navigation("RB")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -335,6 +603,11 @@ namespace Backend.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Backend.Models.CasaDeMarcat", b =>
+                {
+                    b.Navigation("MesajXML");
                 });
 
             modelBuilder.Entity("Backend.Models.User", b =>

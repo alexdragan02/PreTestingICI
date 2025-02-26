@@ -1,4 +1,5 @@
 using Backend.Models;
+using Backend.Models.XML;
 
 namespace Backend.Repositories.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Backend.Repositories.Interfaces
         Task UpdateCasaDeMarcatAsync(CasaDeMarcat casa);
         Task DeleteCasaDeMarcatASync(CasaDeMarcat casa);
          void MarkAsModified(CasaDeMarcat casa);
+        Task AddMesajAsync(int casaId, Msj mesja);
     }
 }

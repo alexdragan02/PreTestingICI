@@ -22,9 +22,30 @@ namespace Backend.Data
                 .HasMany(u => u.CaseDeMarcat)
                 .WithOne(c => c.User)
                 .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<CasaDeMarcat>()
+                .HasMany(c => c.MesajXML)
+                .WithOne(m => m.CasaDeMarcat)
+                .HasForeignKey(m => m.CasaDeMarcatId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Msj>().HasKey(m => m.IdM);
+            builder.Entity<Msj>().OwnsOne(m => m.Bon, bon =>
+            {
+                bon.OwnsMany(b => b.Cote); // Bon are o lista de Cote
+            });
+
+            builder.Entity<Msj>().OwnsOne(m => m.RB, rb =>
+            {
+                rb.OwnsMany(r => r.CoteZList); // RB are o lista de CoteZ
+                rb.OwnsOne(r => r.Pl); // RB contine un singur PL
+                rb.OwnsOne(r => r.Av);//contine un singur av
+            });
+
+            builder.Entity<Msj>().OwnsOne(m => m.ME, me =>
+            {
+                me.OwnsMany(m => m.Ev); // ME are o list de Ev
+            });
         }
     }
 }
