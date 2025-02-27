@@ -108,8 +108,6 @@ const generateClient = async () => {
   }
 }
 
-
-
 const resetForm = () => {
   clientForm.value = {
     id: 0,
@@ -131,6 +129,8 @@ const fetchCaseDeMarcat = async () => {
     const response = await fetch('http://localhost:8080/api/casademarcat/list', {
       credentials: 'include' // Include credentials to ensure session is sent
     })
+    //daca nu avem loguri sa apara in console log ca nu avem
+    
     if (!response.ok) throw new Error('Failed to fetch case de marcat')
     const data = await response.json()
     casas.value = data
@@ -140,6 +140,7 @@ const fetchCaseDeMarcat = async () => {
 }
 
 const addCasa = async () => {
+  console.log(auth.user?.id);
   if (!auth.user?.id) {
     console.error('User is not logged in');
     alert('Trebuie să fii logat pentru a adăuga o casă de marcat!');
@@ -190,23 +191,22 @@ const deleteCasa = async (id: number) => {
   }
 }
 
-const selectCasa = (index: number) => {
-  const selectedCasa = casas.value[index]
-  
+const selectCasa = (id: number) => {
+  const selectedCasa = casas.value.find(casa => casa.id === id)
+  console.log(selectedCasa);
   // Populăm formularul cu datele casei selectate
   clientForm.value = { 
     id: selectedCasa.id,
     name: selectedCasa.name || '',
-    email: selectedCasa.email || '',
+    email: selectedCasa.email || '', // Asigură-te că acest câmp există în backend
     nui: selectedCasa.nui || '',
-    profileType: selectedCasa.profileType || 0,
-    profileReset: selectedCasa.profileReset || 'No',
-    date: selectedCasa.date || '',
-    reconnectMinutes: selectedCasa.reconnectMinutes || 0,
-    destinationAMEF: selectedCasa.destinationAMEF || '',
-    urlAMEF: selectedCasa.urlAMEF || ''
+    profileType: selectedCasa.tipProfil || 0,  // Schimbă `profileType` -> `tipProfil`
+    profileReset: selectedCasa.tipReset ? 'Yes' : 'No', // Schimbă `profileReset` -> `tipReset`
+    date: selectedCasa.dateTime || '',
+    reconnectMinutes: selectedCasa.nrMinuteReconectare || 0,
+    destinationAMEF: selectedCasa.destinatieAmef || '',
+    urlAMEF: selectedCasa.urlAmef || ''
   }
-  
   isEditMode.value = true
 
   // Opțional: scroll la formular pentru a atrage atenția utilizatorului
@@ -216,200 +216,264 @@ const selectCasa = (index: number) => {
   }
 }
 
-
-
 onMounted(() => {
   fetchCaseDeMarcat()
 })
 </script>
 
 <template>
-  <div class="space-y-8 mt-16">
+  <div class="space-y-6 mt-16">
     <!-- Certificate Container -->
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Certificat ANAF Curent</h2>
+    <div class="bg-white shadow-sm rounded-lg p-4">
+      <div class="flex justify-between items-center mb-3">
+        <h2 class="text-xl font-bold text-gray-800">Certificat ANAF Curent</h2>
         <button @click="downloadCertificate"
-                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 
-                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                       transition duration-150 ease-in-out flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                class="px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1
+                       transition duration-150 ease-in-out flex items-center text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
           Download
         </button>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
         <div><span class="font-semibold">Common Name:</span> ANAF TEST</div>
         <div><span class="font-semibold">Organization:</span> ANAF TEST</div>
-        <div><span class="font-semibold">Organization Unit:</span> ANAF TEST</div>
+        <div><span class="font-semibold">Org Unit:</span> ANAF TEST</div>
         <div><span class="font-semibold">Locality:</span> Bucharest</div>
         <div><span class="font-semibold">State:</span> Bucharest</div>
         <div><span class="font-semibold">Country:</span> RO</div>
         <div><span class="font-semibold">Valid From:</span> May 24, 2020</div>
         <div><span class="font-semibold">Valid To:</span> May 22, 2030</div>
-        <div><span class="font-semibold">Issuer:</span> ANAF TEST, ANAF TEST</div>
-        <div><span class="font-semibold">Serial Number:</span> 11052086255773359376 (0x9960e5e4a6591d10)</div>
+        <div class="col-span-2"><span class="font-semibold">Issuer:</span> ANAF TEST, ANAF TEST</div>
+        <div class="col-span-2"><span class="font-semibold">Serial Number:</span> 11052086255773359376</div>
       </div>
     </div>
 
     <!-- File Upload Container -->
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-2xl font-bold mb-6 text-gray-800">File Upload</h2>
-      <div class="mb-6">
+    <div class="bg-white shadow-sm rounded-lg p-4">
+      <h2 class="text-xl font-bold mb-3 text-gray-800">File Upload</h2>
+      <div class="mb-3 flex items-center">
         <input type="file" 
                class="block w-full text-sm text-gray-500
-                      file:mr-4 file:py-3 file:px-4
+                      file:mr-3 file:py-2 file:px-3
                       file:rounded-md file:border-0
-                      file:text-sm file:font-semibold
+                      file:text-xs file:font-semibold
                       file:bg-blue-50 file:text-blue-700
                       hover:file:bg-blue-100
                       cursor-pointer"
                @change="handleFileUpload" />
       </div>
       <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
           <thead class="bg-gray-50">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Upload Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Upload Date</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="(file, index) in uploadedFiles" :key="index">
-              <td class="px-6 py-4 whitespace-nowrap">{{ file.name }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ file.size }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ file.uploadDate }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">
+              <td class="px-3 py-2 whitespace-nowrap">{{ file.name }}</td>
+              <td class="px-3 py-2 whitespace-nowrap">{{ file.size }}</td>
+              <td class="px-3 py-2 whitespace-nowrap">{{ file.uploadDate }}</td>
+              <td class="px-3 py-2 whitespace-nowrap">
                 <button @click="deleteFile(index)"
-                        class="text-red-600 hover:text-red-900 focus:outline-none focus:underline">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        class="text-red-600 hover:text-red-900 focus:outline-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                   </svg>
                 </button>
               </td>
+            </tr>
+            <tr v-if="uploadedFiles.length === 0">
+              <td colspan="4" class="px-3 py-2 text-center text-gray-500">No files uploaded</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- Client Generation Form -->
-    <div id="clientForm" class="bg-white shadow-md rounded-lg p-6">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">
-          {{ isEditMode ? 'Actualizare Profil Casa: ' + clientForm.name : 'Generate Client' }}
-        </h2>
-        <button v-if="isEditMode" @click="resetForm" 
-                class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600
-                       focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2
-                       transition duration-150 ease-in-out">
-          Anulează
-        </button>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Client Generation Form -->
+      <div id="clientForm" class="bg-white shadow-sm rounded-lg p-4 md:col-span-2">
+        <div class="flex justify-between items-center mb-3">
+          <h2 class="text-xl font-bold text-gray-800">
+            {{ isEditMode ? 'Actualizare: ' + clientForm.name : 'Generate Client' }}
+          </h2>
+          <button v-if="isEditMode" @click="resetForm" 
+                  class="px-2 py-1 bg-gray-500 text-white rounded-md hover:bg-gray-600
+                        focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1
+                        transition duration-150 ease-in-out text-xs">
+            Anulează
+          </button>
+        </div>
+        <form @submit.prevent="generateClient" class="space-y-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Nume</label>
+              <input type="text" v-model="clientForm.name" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm"/>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">NUI</label>
+              <input type="text" v-model="clientForm.nui" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm"/>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Profile Type</label>
+              <select v-model="clientForm.profileType" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm">
+                <option :value="0">0</option>
+                <option :value="1">1</option>
+              </select>
+            </div>
+
+            <div v-if="clientForm.profileType === 0">
+              <label class="block text-xs font-medium text-gray-700 mb-1">Profile Reset</label>
+              <select v-model="clientForm.profileReset" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+
+            <div v-if="clientForm.profileType === 0 && clientForm.profileReset === 'Yes'">
+              <label class="block text-xs font-medium text-gray-700 mb-1">Date</label>
+              <input type="date" v-model="clientForm.date" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm"/>
+            </div>
+          </div>
+
+          <div v-if="clientForm.profileType === 1" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Reconnect Minutes</label>
+              <input type="number" v-model="clientForm.reconnectMinutes" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm"/>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Destinatie AMEF</label>
+              <select v-model="clientForm.destinationAMEF" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm">
+                <option value="AMEF Uzual">AMEF Uzual</option>
+                <option value="AMEF Schimb Valutar">AMEF Schimb Valutar</option>
+              </select>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="block text-xs font-medium text-gray-700 mb-1">URL AMEF</label>
+              <input type="text" v-model="clientForm.urlAMEF" placeholder="xml localhost" class="block w-full px-3 py-1.5 rounded-md border border-gray-300 text-sm"/>
+            </div>
+          </div>
+
+          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md 
+                  shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+                  transition duration-150 ease-in-out mt-3">
+            {{ isEditMode ? 'Actualizează' : 'Generează' }}
+          </button>
+        </form>
       </div>
-      <form @submit.prevent="generateClient" class="space-y-6">
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-2">Nume</label>
-    <input type="text" v-model="clientForm.name" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
-  </div>
 
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-    <input type="email" v-model="clientForm.email" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
-  </div>
-
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-2">NUI</label>
-    <input type="text" v-model="clientForm.nui" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
-  </div>
-
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-2">Profile Type</label>
-    <select v-model="clientForm.profileType" class="block w-full px-4 py-3 rounded-md border border-gray-300">
-      <option :value="0">0</option>
-      <option :value="1">1</option>
-    </select>
-  </div>
-
-  <div v-if="clientForm.profileType === 1">
-    <label class="block text-sm font-medium text-gray-700 mb-2">Destinatie AMEF</label>
-    <input type="text" v-model="clientForm.destinationAMEF" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
-  </div>
-
-  <div>
-    <label class="block text-sm font-medium text-gray-700 mb-2">URL AMEF</label>
-    <input type="text" v-model="clientForm.urlAMEF" class="block w-full px-4 py-3 rounded-md border border-gray-300"/>
-  </div>
-
-  <button type="submit" class="w-full flex justify-center py-3 px-4 bg-blue-600 text-white rounded-md">
-    {{ isEditMode ? 'Actualizează Casa de Marcat' : 'Generează' }}
-  </button>
-</form>
-
-       
+      <!-- Casa de Marcat Add Form - Now smaller -->
+      <div class="bg-white shadow-sm rounded-lg p-3">
+        <h2 class="text-lg font-bold mb-2 text-gray-800">Adaugă Casă</h2>
+        <div class="flex flex-col space-y-2">
+          <input type="text" v-model="newCasaName" placeholder="Nume Casa"
+                class="block w-full px-3 py-1.5 rounded-md border border-gray-300 shadow-sm 
+                        focus:ring-1 focus:ring-blue-500 focus:border-blue-500
+                        text-sm placeholder-gray-400" />
+          <button @click="addCasa"
+                  class="px-3 py-1.5 bg-green-600 text-white rounded-md hover:bg-green-700 
+                        focus:outline-none focus:ring-1 focus:ring-green-500 focus:ring-offset-1
+                        transition duration-150 ease-in-out text-sm">
+            Adaugă Casă
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- Casa de Marcat Table -->
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-2xl font-bold mb-6 text-gray-800">Lista Case de Marcat</h2>
-      <div class="mb-4 flex space-x-4">
-        <input type="text" v-model="newCasaName" placeholder="Nume Casa"
-               class="block w-full px-4 py-3 rounded-md border border-gray-300 shadow-sm 
-                       focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                       text-gray-900 placeholder-gray-400" />
-        <button @click="addCasa"
-                class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 
-                       focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
-                       transition duration-150 ease-in-out">
-          Adauga Casa
-        </button>
-      </div>
-
+    <div class="bg-white shadow-sm rounded-lg p-4">
+      <h2 class="text-xl font-bold mb-3 text-gray-800">Lista Case de Marcat</h2>
       <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
           <thead class="bg-gray-50">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NUI</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile Type</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile Reset</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reconnect Minutes</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination AMEF</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">URL AMEF</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NUI</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profile</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reset</th>
+              <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="(casa, index) in casas" :key="index" :class="{ 'bg-blue-50': clientForm.id === casa.id }">
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.name }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.nui }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.profileType }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.profileReset }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.date }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.reconnectMinutes }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.destinationAMEF }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">{{ casa.urlAMEF }}</td>
-              <td class="px-6 py-4 whitespace-nowrap">
+              <td class="px-3 py-2 whitespace-nowrap">{{ casa.name }}</td>
+              <td class="px-3 py-2 whitespace-nowrap">{{ casa.nui }}</td>
+              <td class="px-3 py-2 whitespace-nowrap">{{ casa.tipProfil }}</td>
+              <td class="px-3 py-2 whitespace-nowrap">{{ casa.tipReset ? 'Yes' : 'No' }}</td>
+              <td class="px-3 py-2 whitespace-nowrap flex space-x-1">
                 <button @click="selectCasa(casa.id)"
-                        class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline">
-                  Selectează
+                        class="px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 
+                              focus:outline-none focus:ring-1 focus:ring-blue-500">
+                  Edit
                 </button>
                 <button @click="selectCasaForLogs(casa.id)"
-                        class="text-blue-600 hover:text-blue-900 focus:outline-none focus:underline">
-                  Vezi Loguri
+                        class="px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700 
+                              focus:outline-none focus:ring-1 focus:ring-green-500">
+                  Logs
                 </button>
                 <button @click="deleteCasa(casa.id)"
-                        class="text-red-600 hover:text-red-900 focus:outline-none focus:underline ml-4">
-                  Sterge
+                        class="px-2 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700 
+                              focus:outline-none focus:ring-1 focus:ring-red-500">
+                  Delete
                 </button>
               </td>
+            </tr>
+            <tr v-if="casas.length === 0">
+              <td colspan="5" class="px-3 py-2 text-center text-gray-500">No items found</td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <!-- Detailed Casa Information (Expandable) -->
+      <div v-if="casas.length > 0" class="mt-4">
+        <details class="text-sm">
+          <summary class="cursor-pointer text-blue-600 hover:text-blue-800 font-medium">
+            View Detailed Information
+          </summary>
+          <div class="mt-2 overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 text-xs">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">NUI</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">Profile</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">Reset</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">Minutes</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">AMEF</th>
+                  <th class="px-3 py-2 text-left font-medium text-gray-500 uppercase tracking-wider">URL</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr v-for="(casa, index) in casas" :key="index">
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.name }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.nui }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.tipProfil }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.tipReset ? 'Yes' : 'No' }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.dateTime }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.nrMinuteReconectare }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.destinatieAmef }}</td>
+                  <td class="px-3 py-2 whitespace-nowrap">{{ casa.urlAmef }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
       </div>
     </div>
   </div>

@@ -2,15 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\Backend",
+    "\\Backend\\Controllers",
+    "\\Backend\\Controllers\\Data",
+    "\\Backend\\DTOs",
     "\\Backend\\Migrations",
-    "\\Backend\\Models",
-    "\\Backend\\Models\\XML",
-    "\\Backend\\Models\\XML\\Bon",
     "\\Backend\\Repositories",
     "\\Backend\\Repositories\\Interfaces",
     "\\Backend\\Services",
     "\\Backend\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+  "SelectedNode": "\\Backend\\Models",
   "PreviewInSolutionExplorer": false
 }

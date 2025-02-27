@@ -52,10 +52,10 @@ namespace Backend.Services
                         TotB = faker.Finance.Amount(10, 500),
                         TotTva = faker.Finance.Amount(1, 50),
                         Cote = new List<Cote>
-                        {
-                            new Cote { Cota = 19, Tva = faker.Finance.Amount(1, 20) },
-                            new Cote { Cota = 5, Tva = faker.Finance.Amount(1, 10) }
-                        }
+                {
+                    new Cote { Cota = 19, Tva = faker.Finance.Amount(1, 20) },
+                    new Cote { Cota = 5, Tva = faker.Finance.Amount(1, 10) }
+                }
                     },
 
                     RB = new RB
@@ -67,10 +67,10 @@ namespace Backend.Services
                         TotTva = (float)faker.Finance.Amount(1, 50),
                         MonRef = "RON",
                         CoteZList = new List<CoteZ>
-                        {
-                            new CoteZ { Cota = 19, ValOp = faker.Random.Float(10, 50), Tva = faker.Random.Float(1, 10) },
-                            new CoteZ { Cota = 5, ValOp = faker.Random.Float(5, 25), Tva = faker.Random.Float(1, 5) }
-                        },
+                {
+                    new CoteZ { Cota = 19, ValOp = faker.Random.Float(10, 50), Tva = faker.Random.Float(1, 10) },
+                    new CoteZ { Cota = 5, ValOp = faker.Random.Float(5, 25), Tva = faker.Random.Float(1, 5) }
+                },
                         Pl = new PL
                         {
                             TipP = faker.Random.Int(1, 3),
@@ -87,27 +87,31 @@ namespace Backend.Services
                     {
                         NrB = faker.Random.Int(1, 10),
                         Ev = new List<Ev>
-                        {
-                            new Ev
-                            {
-                                DataI = faker.Date.Past().ToUniversalTime(),
-                                DataF = faker.Date.Future().ToUniversalTime(),
-                                TipE = faker.Random.Int(1, 10)
-                            },
-                            new Ev
-                            {
-                                DataI = faker.Date.Past().ToUniversalTime(),
-                                DataF = faker.Date.Future().ToUniversalTime(),
-                                TipE = faker.Random.Int(1, 10)
-                            }
-                        }
+                {
+                    new Ev
+                    {
+                        DataI = faker.Date.Past().ToUniversalTime(),
+                        DataF = faker.Date.Future().ToUniversalTime(),
+                        TipE = faker.Random.Int(1, 10)
+                    },
+                    new Ev
+                    {
+                        DataI = faker.Date.Past().ToUniversalTime(),
+                        DataF = faker.Date.Future().ToUniversalTime(),
+                        TipE = faker.Random.Int(1, 10)
+                    }
+                }
                     }
                 };
 
-                mesaje.Add(mesaj);
+                // Save each message to the repository
+                await _msjRepository.AddMesajAsync(mesaj);
             }
 
+            // Commit all changes to the database
+            await _msjRepository.SaveChangesAsync();
         }
+
 
     }
 }

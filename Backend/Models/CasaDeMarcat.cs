@@ -41,7 +41,8 @@ namespace Backend.Models
             string? destinatieAmef,
             string? urlAmef,
             string userId,
-            User user
+            User user,
+            List<Msj> mesajeXML
         )
         {
             this.Id = id;
@@ -55,6 +56,7 @@ namespace Backend.Models
             this.URLAmef = urlAmef;
             this.UserId = userId;
             this.User = user;
+            this.MesajXML = mesajeXML;
         }
 
         // Constructor de copiere
@@ -71,6 +73,8 @@ namespace Backend.Models
             this.URLAmef = casa.URLAmef;
             this.UserId = casa.UserId;
             this.User = casa.User;
+            this.MesajXML = casa.MesajXML;
+
         }
 
         // Constructor de instanțiere cu toate elementele

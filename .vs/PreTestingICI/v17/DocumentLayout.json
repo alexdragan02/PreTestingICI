@@ -3,40 +3,72 @@
   "WorkspaceRootPath": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\Data\\ApplicationDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\Data\\ApplicationDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Msj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\XML\\Msj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\CasaDeMarcat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\CasaDeMarcat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\MsjController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\MsjController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\CasaDeMarcatDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\DTOs\\CasaDeMarcatDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\MsjService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Services\\MsjService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\CasaDeMarcatService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Services\\CasaDeMarcatService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\MsjController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\MsjController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\CasaDeMarcatController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\CasaDeMarcatController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\20250227090816_InitialCreate.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Migrations\\20250227090816_InitialCreate.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\20250227090816_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Migrations\\20250227090816_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\CasaDeMarcatDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\DTOs\\CasaDeMarcatDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\UserDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\DTOs\\UserDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\Data\\ApplicationDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\Data\\ApplicationDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\CasaDeMarcat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\CasaDeMarcat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Msj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\XML\\Msj.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\IMsjService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,10 +83,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Repositories\\Interfaces\\IMsjRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\CasaDeMarcatRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Repositories\\CasaDeMarcatRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -65,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\CasaDeMarcatController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Controllers\\CasaDeMarcatController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Utils\\XmlHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -107,28 +131,12 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\XML\\rB\\CoteZ.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\UserDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\DTOs\\UserDTO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -138,7 +146,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -146,59 +154,98 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "20250227090816_InitialCreate.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\20250227090816_InitialCreate.Designer.cs",
+              "RelativeDocumentMoniker": "Backend\\Migrations\\20250227090816_InitialCreate.Designer.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\20250227090816_InitialCreate.Designer.cs",
+              "RelativeToolTip": "Backend\\Migrations\\20250227090816_InitialCreate.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T09:10:14.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CasaDeMarcatController.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\CasaDeMarcatController.cs",
+              "RelativeDocumentMoniker": "Backend\\Controllers\\CasaDeMarcatController.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\CasaDeMarcatController.cs",
+              "RelativeToolTip": "Backend\\Controllers\\CasaDeMarcatController.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAowEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T07:08:09.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeToolTip": "Backend\\Migrations\\ApplicationDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAAMCAAAAAAAAAAAcwBYCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAGQCAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T13:24:20.663Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MsjService.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\MsjService.cs",
-              "RelativeDocumentMoniker": "Backend\\Services\\MsjService.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\MsjService.cs",
-              "RelativeToolTip": "Backend\\Services\\MsjService.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAcwCMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:18:02.968Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CasaDeMarcat.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\CasaDeMarcat.cs",
-              "RelativeDocumentMoniker": "Backend\\Models\\CasaDeMarcat.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\CasaDeMarcat.cs",
-              "RelativeToolTip": "Backend\\Models\\CasaDeMarcat.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAcwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:01:50.27Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "MsjController.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\MsjController.cs",
               "RelativeDocumentMoniker": "Backend\\Controllers\\MsjController.cs",
               "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\MsjController.cs",
               "RelativeToolTip": "Backend\\Controllers\\MsjController.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAgwGsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAqwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T07:05:50.892Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CasaDeMarcatService.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\CasaDeMarcatService.cs",
+              "RelativeDocumentMoniker": "Backend\\Services\\CasaDeMarcatService.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\CasaDeMarcatService.cs",
+              "RelativeToolTip": "Backend\\Services\\CasaDeMarcatService.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAowFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T08:28:58.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MsjService.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\MsjService.cs",
+              "RelativeDocumentMoniker": "Backend\\Services\\MsjService.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\MsjService.cs",
+              "RelativeToolTip": "Backend\\Services\\MsjService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T08:18:02.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "20250227090816_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\20250227090816_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Backend\\Migrations\\20250227090816_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Migrations\\20250227090816_InitialCreate.cs",
+              "RelativeToolTip": "Backend\\Migrations\\20250227090816_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T09:10:13.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "CasaDeMarcatDTO.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\CasaDeMarcatDTO.cs",
               "RelativeDocumentMoniker": "Backend\\DTOs\\CasaDeMarcatDTO.cs",
@@ -211,20 +258,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Backend\\Controllers\\Data\\ApplicationDbContext.cs",
               "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\Data\\ApplicationDbContext.cs",
               "RelativeToolTip": "Backend\\Controllers\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwC8AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T08:12:50.429Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\UserDTO.cs",
+              "RelativeDocumentMoniker": "Backend\\DTOs\\UserDTO.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\UserDTO.cs",
+              "RelativeToolTip": "Backend\\DTOs\\UserDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T08:15:19.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CasaDeMarcat.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\CasaDeMarcat.cs",
+              "RelativeDocumentMoniker": "Backend\\Models\\CasaDeMarcat.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\CasaDeMarcat.cs",
+              "RelativeToolTip": "Backend\\Models\\CasaDeMarcat.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAUwDoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T08:01:50.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Backend\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\User.cs",
+              "RelativeToolTip": "Backend\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T10:05:30.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Msj.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Msj.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\Msj.cs",
@@ -237,111 +323,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CasaDeMarcatService.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\CasaDeMarcatService.cs",
-              "RelativeDocumentMoniker": "Backend\\Services\\CasaDeMarcatService.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\CasaDeMarcatService.cs",
-              "RelativeToolTip": "Backend\\Services\\CasaDeMarcatService.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAEUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:28:58.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Backend\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Backend\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAcwEgAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:10:37.749Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IMsjService.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\IMsjService.cs",
-              "RelativeDocumentMoniker": "Backend\\Services\\Interfaces\\IMsjService.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\IMsjService.cs",
-              "RelativeToolTip": "Backend\\Services\\Interfaces\\IMsjService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:22:06.74Z",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.json",
+              "RelativeDocumentMoniker": "Backend\\appsettings.json",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.json",
+              "RelativeToolTip": "Backend\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-26T08:51:18.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "MsjRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\MsjRepository.cs",
-              "RelativeDocumentMoniker": "Backend\\Repositories\\MsjRepository.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\MsjRepository.cs",
-              "RelativeToolTip": "Backend\\Repositories\\MsjRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:17:55.34Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IMsjRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
-              "RelativeDocumentMoniker": "Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
-              "RelativeToolTip": "Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:15:07.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CasaDeMarcatRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\CasaDeMarcatRepository.cs",
-              "RelativeDocumentMoniker": "Backend\\Repositories\\CasaDeMarcatRepository.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\CasaDeMarcatRepository.cs",
-              "RelativeToolTip": "Backend\\Repositories\\CasaDeMarcatRepository.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAAC8AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:17:54.128Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ICasaDeMarcatRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
-              "RelativeDocumentMoniker": "Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
-              "RelativeToolTip": "Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:15:03.264Z",
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "Backend\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.Development.json",
+              "RelativeToolTip": "Backend\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-26T08:51:15.095Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "ICasaDeMarcatService.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
-              "RelativeDocumentMoniker": "Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
-              "RelativeToolTip": "Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:14:54.329Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Program.cs",
               "RelativeDocumentMoniker": "Backend\\Program.cs",
@@ -354,7 +362,92 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Backend\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Backend\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAcwEgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:10:37.749Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 17,
+              "Title": "IMsjService.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\IMsjService.cs",
+              "RelativeDocumentMoniker": "Backend\\Services\\Interfaces\\IMsjService.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\IMsjService.cs",
+              "RelativeToolTip": "Backend\\Services\\Interfaces\\IMsjService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:22:06.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MsjRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\MsjRepository.cs",
+              "RelativeDocumentMoniker": "Backend\\Repositories\\MsjRepository.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\MsjRepository.cs",
+              "RelativeToolTip": "Backend\\Repositories\\MsjRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T08:17:55.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IMsjRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
+              "RelativeDocumentMoniker": "Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
+              "RelativeToolTip": "Backend\\Repositories\\Interfaces\\IMsjRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:15:07.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CasaDeMarcatRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\CasaDeMarcatRepository.cs",
+              "RelativeDocumentMoniker": "Backend\\Repositories\\CasaDeMarcatRepository.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\CasaDeMarcatRepository.cs",
+              "RelativeToolTip": "Backend\\Repositories\\CasaDeMarcatRepository.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAAC8AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T08:17:54.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ICasaDeMarcatRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
+              "RelativeDocumentMoniker": "Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
+              "RelativeToolTip": "Backend\\Repositories\\Interfaces\\ICasaDeMarcatRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:15:03.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ICasaDeMarcatService.cs",
+              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
+              "RelativeDocumentMoniker": "Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
+              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
+              "RelativeToolTip": "Backend\\Services\\Interfaces\\ICasaDeMarcatService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:14:54.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "XmlHelper.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Utils\\XmlHelper.cs",
               "RelativeDocumentMoniker": "Backend\\Utils\\XmlHelper.cs",
@@ -362,25 +455,11 @@
               "RelativeToolTip": "Backend\\Utils\\XmlHelper.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAcwCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T09:52:50.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T09:52:50.505Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "CasaDeMarcatController.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\CasaDeMarcatController.cs",
-              "RelativeDocumentMoniker": "Backend\\Controllers\\CasaDeMarcatController.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Controllers\\CasaDeMarcatController.cs",
-              "RelativeToolTip": "Backend\\Controllers\\CasaDeMarcatController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T07:08:09.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 24,
               "Title": "RB.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\rB\\RB.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\rB\\RB.cs",
@@ -388,12 +467,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\rB\\RB.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAcwEQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:17:38.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:17:38.234Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 25,
               "Title": "PL.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\rB\\PL.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\rB\\PL.cs",
@@ -401,12 +479,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\rB\\PL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:17:33.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:17:33.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "Bon.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Bon\\Bon.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\Bon\\Bon.cs",
@@ -414,12 +491,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\Bon\\Bon.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:15:46.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:15:46.534Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "Cote.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Bon\\Cote.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\Bon\\Cote.cs",
@@ -427,12 +503,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\Bon\\Cote.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:15:57.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:15:57.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "Ev.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Me\\Ev.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\Me\\Ev.cs",
@@ -440,12 +515,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\Me\\Ev.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:16:09.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:16:09.13Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 29,
               "Title": "ME.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\Me\\ME.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\Me\\ME.cs",
@@ -453,12 +527,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\Me\\ME.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:16:13.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:16:13.132Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "AV.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\rB\\AV.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\rB\\AV.cs",
@@ -466,12 +539,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\rB\\AV.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:16:20.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:16:20.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "CoteZ.cs",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\XML\\rB\\CoteZ.cs",
               "RelativeDocumentMoniker": "Backend\\Models\\XML\\rB\\CoteZ.cs",
@@ -479,25 +551,11 @@
               "RelativeToolTip": "Backend\\Models\\XML\\rB\\CoteZ.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:17:28.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:17:28.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Backend\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Models\\User.cs",
-              "RelativeToolTip": "Backend\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T10:05:30.107Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "Backend.csproj",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Backend.csproj",
               "RelativeDocumentMoniker": "Backend\\Backend.csproj",
@@ -505,38 +563,11 @@
               "RelativeToolTip": "Backend\\Backend.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-26T08:51:22.117Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T08:51:22.117Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "Backend\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.Development.json",
-              "RelativeToolTip": "Backend\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-26T08:51:15.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.json",
-              "RelativeDocumentMoniker": "Backend\\appsettings.json",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\appsettings.json",
-              "RelativeToolTip": "Backend\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-26T08:51:18.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 33,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Backend\\Properties\\launchSettings.json",
@@ -544,20 +575,7 @@
               "RelativeToolTip": "Backend\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-26T08:51:33.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\UserDTO.cs",
-              "RelativeDocumentMoniker": "Backend\\DTOs\\UserDTO.cs",
-              "ToolTip": "C:\\Users\\Dragan Alexandru\\Desktop\\PreTestingICI\\Backend\\DTOs\\UserDTO.cs",
-              "RelativeToolTip": "Backend\\DTOs\\UserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T08:15:19.671Z"
+              "WhenOpened": "2025-02-26T08:51:33.083Z"
             }
           ]
         }

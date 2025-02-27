@@ -22,7 +22,7 @@ namespace Backend.Data
                 .HasMany(u => u.CaseDeMarcat)
                 .WithOne(c => c.User)
                 .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<CasaDeMarcat>()
                 .HasMany(c => c.MesajXML)
                 .WithOne(m => m.CasaDeMarcat)
