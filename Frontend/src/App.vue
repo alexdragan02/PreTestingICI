@@ -53,7 +53,7 @@ const toggleForm = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100">
+  <div class=" bg-gray-100">
     <nav class="bg-white fixed top-0 left-0 w-full z-50">
       <div class=" max-w-7xl mx-auto px-4">
         <div class="flex justify-between h-16">
@@ -68,7 +68,6 @@ const toggleForm = () => {
               Logs
             </router-link>
             <div v-if="auth.isAuthenticated" class="flex items-center space-x-4">
-              <span class="text-sm text-gray-700">{{ auth.email }}</span>
               <button @click="handleLogout" 
                       class="px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:bg-red-50">
                 Logout

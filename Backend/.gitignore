@@ -18,3 +18,9 @@ out/
 packages/
 node_modules/
 **/node_modules/
+
+# ignmore appsettings for database security
+
+appsettings.Development.json
+appsettings.Production.json
+appsettings.json
